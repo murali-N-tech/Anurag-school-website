@@ -20,7 +20,8 @@ function EventsPage() {
   }, []);
 
   return (
-    <div className="container mx-auto px-4 py-12">
+    // Apply the Bone background color using arbitrary value syntax
+    <div className="container mx-auto px-4 py-12 bg-[#E3DAC9]">
       <h1 className="text-4xl font-bold text-center text-gray-800 mb-12">Upcoming Events</h1>
       {loading ? (
         <p className="text-center">Loading events...</p>

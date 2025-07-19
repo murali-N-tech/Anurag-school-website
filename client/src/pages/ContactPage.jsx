@@ -22,7 +22,8 @@ function ContactPage() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-12">
+    // Apply the exact Bone color using Tailwind's arbitrary value syntax
+    <div className="container mx-auto px-4 py-12 bg-[#E3DAC9]">
       <h1 className="text-4xl font-bold text-center text-gray-800 mb-12">Get In Touch</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
         {/* Contact Form */}
@@ -58,14 +59,14 @@ function ContactPage() {
         <div className="space-y-8">
           <div className="bg-white p-8 rounded-lg shadow-lg">
             <h2 className="text-2xl font-semibold mb-4">Contact Information</h2>
-            <p className="text-gray-600 mb-2"><strong>Address:</strong> 54-15-20, Sri Chaitanya College Road, Tikkle Road, Labbipet, Vijayawada, Andhra Pradesh 520010</p>
-            <p className="text-gray-600 mb-2"><strong>Phone:</strong> +91 123 456 7890</p>
-            <p className="text-gray-600"><strong>Email:</strong> contact@srichaitanya.school</p>
+            <p className="text-gray-600 mb-2"><strong>Address:</strong>D.No.11-283, Anurag Nagar, Ponangi Road, Dt, Eluru, Andhra Pradesh </p>
+            <p className="text-gray-600 mb-2"><strong>Phone:</strong> +91 9491480402</p>
+            <p className="text-gray-600"><strong>Email:</strong> mernschool@gmail.coml</p>
           </div>
           <div className="bg-white rounded-lg shadow-lg overflow-hidden">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3825.49503947844!2d80.6439973148641!3d16.50193498861614!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a35fb4a0aaaaaab%3A0xbd16283067ce3b6!2sSri%20Chaitanya%20Junior%20College!5e0!3m2!1sen!2sin!4v1626872960098!5m2!1sen!2sin"
-              width="100%"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3821.852952224336!2d81.10846099999999!3d16.6842403!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a361584341fe779%3A0x9f74fc517b25552c!2sAnurag%20Group!5e0!3m2!1sen!2sin!4v1752949636221!5m2!1sen!2sin"
+              width="600"
               height="300"
               style={{ border: 0 }}
               allowFullScreen=""
