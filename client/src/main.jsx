@@ -15,6 +15,7 @@ import AdminDashboard from './pages/AdminDashboard.jsx';
 import LoginPage from './pages/LoginPage.jsx';
 import ProtectedRoute from './components/common/ProtectedRoute.jsx';
 import RegisterPage from './pages/RegisterPage.jsx';
+import NewsDetailPage from './pages/NewsDetailPage.jsx';
 
 // --- Define Routes ---
 const router = createBrowserRouter([
@@ -35,6 +36,7 @@ const router = createBrowserRouter([
       { path: 'contact', element: <ContactPage /> },
       { path: 'login', element: <LoginPage /> },
       { path: 'register', element: <RegisterPage /> },
+       {path: 'news/:id', element: <NewsDetailPage /> },
       {
         path: 'admin',
         element: <ProtectedRoute />,

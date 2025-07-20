@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { fetchNews } from '../services/api';
 import { Link } from 'react-router-dom';
-import { ChevronLeft, ChevronRight } from 'lucide-react'; // Or your preferred icons
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 function HomePage() {
+  // State for news articles and the slideshow index
   const [news, setNews] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Define Bone color
-  const boneColor = '#E3DAC9'; // Hex: #E3DAC9, RGB: 227, 218, 201
-  const darkBrown = '#4E2A0D'; // Defined the dark brown color for headings
+  // --- Theme Colors ---
+  // Define consistent theme colors for a professional look
+  const boneColor = '#E3DAC9'; // A warm, off-white background
+  const darkBrown = '#4E2A0D'; // A rich brown for headings and accents
 
-  // --- Slideshow Data ---
+  // --- Slideshow Banner Data ---
   const banners = [
     {
       imageUrl: 'https://res.cloudinary.com/dqdhui9bw/image/upload/v1752924907/generated-image-3_gncgs3.png',
@@ -52,28 +54,32 @@ function HomePage() {
     setCurrentIndex(slideIndex);
   };
 
+  // --- Effects Hook ---
   useEffect(() => {
-    // Auto-play functionality
+    // Set up an interval for the auto-playing slideshow
     const sliderInterval = setInterval(() => {
       goToNext();
     }, 5000); // Change slide every 5 seconds
 
-    // Fetch news data
+    // Fetch the latest news articles from the API
     const getNews = async () => {
       try {
         const { data } = await fetchNews();
-        setNews(data.slice(0, 3)); // Get latest 3 news articles
+        setNews(data.slice(0, 3)); // Display the 3 most recent articles
       } catch (error) {
         console.error("Failed to fetch news:", error);
       }
     };
     getNews();
 
-    // Cleanup interval on component unmount
+    // Clean up the interval when the component unmounts to prevent memory leaks
     return () => clearInterval(sliderInterval);
-  }, [currentIndex]); // Only re-run if currentIndex changes to re-start interval
+    // Note: Consider removing `currentIndex` from the dependency array 
+    // if you don't want to re-fetch news every time the slide changes.
+  }, [currentIndex]);
 
-  // Common Heading Component for reusability and consistency
+  // --- Reusable Section Heading Component ---
+  // This component ensures all section titles have a consistent, professional style
   const SectionHeading = ({ children }) => (
     <h2
       className="text-3xl sm:text-4xl font-extrabold mb-8 py-3 px-6 inline-block rounded-md shadow-lg"
@@ -84,18 +90,18 @@ function HomePage() {
   );
 
   return (
-    // Apply Bone color to the main container and ensure it covers the whole screen height
+    // Main container with the 'bone' background color
     <div style={{ backgroundColor: boneColor }} className="min-h-screen font-sans">
+      
       {/* Hero Slideshow Section */}
       <section className="h-[60vh] md:h-[80vh] w-full relative group overflow-hidden shadow-xl">
-        {/* Slide Content */}
         <div
           style={{ backgroundImage: `url(${banners[currentIndex].imageUrl})` }}
           className="w-full h-full bg-center bg-cover duration-700 ease-in-out transform scale-100 group-hover:scale-105"
         >
-          {/* Overlay */}
+          {/* Dark overlay for better text readability */}
           <div className="absolute inset-0 bg-black opacity-50"></div>
-          {/* Text and Button */}
+          {/* Centered text and call-to-action button */}
           <div className="relative h-full flex flex-col items-center justify-center text-center text-white p-6">
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-4 drop-shadow-lg">
               {banners[currentIndex].title}
@@ -112,11 +118,10 @@ function HomePage() {
           </div>
         </div>
 
-        {/* Left Arrow */}
+        {/* Navigation Arrows */}
         <div className="hidden group-hover:block absolute top-1/2 -translate-y-1/2 left-5 text-2xl rounded-full p-2 bg-black/30 text-white cursor-pointer hover:bg-black/50 transition-colors duration-300">
           <ChevronLeft onClick={goToPrevious} size={30} />
         </div>
-        {/* Right Arrow */}
         <div className="hidden group-hover:block absolute top-1/2 -translate-y-1/2 right-5 text-2xl rounded-full p-2 bg-black/30 text-white cursor-pointer hover:bg-black/50 transition-colors duration-300">
           <ChevronRight onClick={goToNext} size={30} />
         </div>
@@ -157,7 +162,7 @@ function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-12">
             {news.length > 0 ? news.map(article => (
               <div key={article._id} className="bg-white rounded-xl shadow-xl overflow-hidden transform hover:-translate-y-3 transition-transform duration-300 border border-gray-100">
-                <img src={article.imageUrl || 'https://placehold.co/600x400/E2DAC9/4E2A0D?text=No+Image+Available'} alt={article.title} className="w-full h-52 object-cover" />
+                <img src={article.imageUrl || 'https://placehold.co/600x400/E2DAC9/4E2A0D?text=No+Image'} alt={article.title} className="w-full h-52 object-cover" />
                 <div className="p-6">
                   <h3 className="text-2xl font-bold text-gray-900 mb-3 line-clamp-2">{article.title}</h3>
                   <p className="text-gray-500 text-sm mb-4 font-medium">{new Date(article.publishDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
@@ -188,112 +193,44 @@ function HomePage() {
             {/* Member 1 */}
             <div className="p-4 w-full sm:w-1/2 lg:w-1/4">
               <div className="h-full flex flex-col items-center text-center bg-white rounded-xl shadow-md p-6 transform hover:-translate-y-2 transition-transform duration-300">
-                <img alt="team" className="flex-shrink-0 rounded-full w-48 h-48 object-cover object-center mb-6 border-4 border-gray-200 shadow-sm" src="https://res.cloudinary.com/dqdhui9bw/image/upload/v1752948517/66c066c9-fd42-49ee-93a3-1f9ebed02d76_kvfdop.jpg"/>
+                <img alt="Chairman Peter G" className="flex-shrink-0 rounded-full w-48 h-48 object-cover object-center mb-6 border-4 border-gray-200 shadow-sm" src="https://res.cloudinary.com/dqdhui9bw/image/upload/v1752948517/66c066c9-fd42-49ee-93a3-1f9ebed02d76_kvfdop.jpg"/>
                 <div className="w-full">
                   <h3 className="text-xl font-bold text-gray-900 mb-1">Peter G</h3>
                   <p className="text-gray-600 mb-3 font-medium">CHAIRMAN</p>
-                  <p className="mb-4 text-gray-700 text-sm leading-relaxed"> Unwavering dedication fosters a thriving learning environment, consistently prioritizing student success and community growth. </p>
-                  <span className="inline-flex space-x-3">
-                    <a className="text-gray-500 hover:text-blue-600 transition-colors duration-200" href="#!">
-                      <svg fill="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-6 h-6" viewBox="0 0 24 24">
-                        <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
-                      </svg>
-                    </a>
-                    <a className="text-gray-500 hover:text-blue-400 transition-colors duration-200" href="#!">
-                      <svg fill="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-6 h-6" viewBox="0 0 24 24">
-                        <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
-                      </svg>
-                    </a>
-                    <a className="text-gray-500 hover:text-pink-500 transition-colors duration-200" href="#!">
-                      <svg fill="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-6 h-6" viewBox="0 0 24 24">
-                        <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
-                      </svg>
-                    </a>
-                  </span>
+                  <p className="mb-4 text-gray-700 text-sm leading-relaxed">Unwavering dedication fosters a thriving learning environment, consistently prioritizing student success and community growth.</p>
                 </div>
               </div>
             </div>
             {/* Member 2 */}
             <div className="p-4 w-full sm:w-1/2 lg:w-1/4">
               <div className="h-full flex flex-col items-center text-center bg-white rounded-xl shadow-md p-6 transform hover:-translate-y-2 transition-transform duration-300">
-                <img alt="team" className="flex-shrink-0 rounded-full w-48 h-48 object-cover object-center mb-6 border-4 border-gray-200 shadow-sm" src="https://res.cloudinary.com/dqdhui9bw/image/upload/v1752948518/IMG_20200120_203220_ew0qmw.jpg"/>
+                <img alt="Principal Kumari G" className="flex-shrink-0 rounded-full w-48 h-48 object-cover object-center mb-6 border-4 border-gray-200 shadow-sm" src="https://res.cloudinary.com/dqdhui9bw/image/upload/v1752948518/IMG_20200120_203220_ew0qmw.jpg"/>
                 <div className="w-full">
                   <h3 className="text-xl font-bold text-gray-900 mb-1">Kumari G</h3>
                   <p className="text-gray-600 mb-3 font-medium">PRINCIPAL</p>
                   <p className="mb-4 text-gray-700 text-sm leading-relaxed">Ensuring a well-structured and effective learning experience for all students by overseeing curriculum development and academic programs.</p>
-                  <span className="inline-flex space-x-3">
-                    <a className="text-gray-500 hover:text-blue-600 transition-colors duration-200" href="#!">
-                      <svg fill="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-6 h-6" viewBox="0 0 24 24">
-                        <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
-                      </svg>
-                    </a>
-                    <a className="text-gray-500 hover:text-blue-400 transition-colors duration-200" href="#!">
-                      <svg fill="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-6 h-6" viewBox="0 0 24 24">
-                        <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
-                      </svg>
-                    </a>
-                    <a className="text-gray-500 hover:text-pink-500 transition-colors duration-200" href="#!">
-                      <svg fill="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-6 h-6" viewBox="0 0 24 24">
-                        <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
-                      </svg>
-                    </a>
-                  </span>
                 </div>
               </div>
             </div>
             {/* Member 3 */}
             <div className="p-4 w-full sm:w-1/2 lg:w-1/4">
               <div className="h-full flex flex-col items-center text-center bg-white rounded-xl shadow-md p-6 transform hover:-translate-y-2 transition-transform duration-300">
-                <img alt="team" className="flex-shrink-0 rounded-full w-48 h-48 object-cover object-center mb-6 border-4 border-gray-200 shadow-sm" src="https://dummyimage.com/202x202/4E2A0D/E3DAC9"/>
+                <img alt="Treasurer Dominic G" className="flex-shrink-0 rounded-full w-48 h-48 object-cover object-center mb-6 border-4 border-gray-200 shadow-sm" src="https://dummyimage.com/202x202/E3DAC9/4E2A0D"/>
                 <div className="w-full">
                   <h3 className="text-xl font-bold text-gray-900 mb-1">DOMINIC G</h3>
                   <p className="text-gray-600 mb-3 font-medium">TREASURER</p>
                   <p className="mb-4 text-gray-700 text-sm leading-relaxed">Providing guidance and support to help students thrive emotionally and socially, fostering a positive and inclusive school environment.</p>
-                  <span className="inline-flex space-x-3">
-                    <a className="text-gray-500 hover:text-blue-600 transition-colors duration-200" href="#!">
-                      <svg fill="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-6 h-6" viewBox="0 0 24 24">
-                        <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
-                      </svg>
-                    </a>
-                    <a className="text-gray-500 hover:text-blue-400 transition-colors duration-200" href="#!">
-                      <svg fill="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-6 h-6" viewBox="0 0 24 24">
-                        <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
-                      </svg>
-                    </a>
-                    <a className="text-gray-500 hover:text-pink-500 transition-colors duration-200" href="#!">
-                      <svg fill="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-6 h-6" viewBox="0 0 24 24">
-                        <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
-                      </svg>
-                    </a>
-                  </span>
                 </div>
               </div>
             </div>
             {/* Member 4 */}
             <div className="p-4 w-full sm:w-1/2 lg:w-1/4">
               <div className="h-full flex flex-col items-center text-center bg-white rounded-xl shadow-md p-6 transform hover:-translate-y-2 transition-transform duration-300">
-                <img alt="team" className="flex-shrink-0 rounded-full w-48 h-48 object-cover object-center mb-6 border-4 border-gray-200 shadow-sm" src="https://dummyimage.com/203x203/4E2A0D/E3DAC9"/>
+                <img alt="Treasurer Joseph G" className="flex-shrink-0 rounded-full w-48 h-48 object-cover object-center mb-6 border-4 border-gray-200 shadow-sm" src="https://dummyimage.com/203x203/E3DAC9/4E2A0D"/>
                 <div className="w-full">
                   <h3 className="text-xl font-bold text-gray-900 mb-1">JOSEPH G</h3>
                   <p className="text-gray-600 mb-3 font-medium">TREASURER</p>
                   <p className="mb-4 text-gray-700 text-sm leading-relaxed">Promoting physical fitness and teamwork through various sports activities, instilling discipline and a healthy lifestyle.</p>
-                  <span className="inline-flex space-x-3">
-                    <a className="text-gray-500 hover:text-blue-600 transition-colors duration-200" href="#!">
-                      <svg fill="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-6 h-6" viewBox="0 0 24 24">
-                        <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
-                      </svg>
-                    </a>
-                    <a className="text-gray-500 hover:text-blue-400 transition-colors duration-200" href="#!">
-                      <svg fill="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-6 h-6" viewBox="0 0 24 24">
-                        <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
-                      </svg>
-                    </a>
-                    <a className="text-gray-500 hover:text-pink-500 transition-colors duration-200" href="#!">
-                      <svg fill="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-6 h-6" viewBox="0 0 24 24">
-                        <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
-                      </svg>
-                    </a>
-                  </span>
                 </div>
               </div>
             </div>

@@ -28,3 +28,19 @@ exports.createNews = async (req, res) => {
     res.status(500).json({ message: 'Server Error' });
   }
 };
+
+// @desc    Get a single news article by ID
+// @route   GET /api/news/:id
+exports.getNewsArticleById = async (req, res) => {
+  try {
+    const article = await News.findById(req.params.id);
+
+    if (!article) {
+      return res.status(404).json({ message: 'Article not found' });
+    }
+
+    res.status(200).json(article);
+  } catch (error) {
+    res.status(500).json({ message: 'Server Error' });
+  }
+};
