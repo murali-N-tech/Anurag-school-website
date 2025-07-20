@@ -1,50 +1,71 @@
 import React, { useState, useEffect } from 'react';
 import { fetchEvents } from '../services/api';
+import SkeletonCard from '../components/common/SkeletonCard'; // Import the skeleton component
 
 function EventsPage() {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // --- Theme Colors for consistency ---
+  const boneColor = '#E3DAC9';
+  const darkBrown = '#4E2A0D';
+
   useEffect(() => {
     const getEvents = async () => {
       try {
+        setLoading(true); // Start loading
         const { data } = await fetchEvents();
         setEvents(data);
       } catch (error) {
         console.error("Failed to fetch events:", error);
       } finally {
-        setLoading(false);
+        setLoading(false); // Stop loading
       }
     };
     getEvents();
   }, []);
 
+  // --- Reusable Section Heading for consistent styling ---
+  const SectionHeading = ({ children }) => (
+    <h2
+      className="text-3xl sm:text-4xl font-extrabold mb-12 py-3 px-6 inline-block rounded-md shadow-lg"
+      style={{ backgroundColor: darkBrown, color: 'white' }}
+    >
+      {children}
+    </h2>
+  );
+
   return (
-    // Apply the Bone background color using arbitrary value syntax
-    <div className="container mx-auto px-4 py-12 bg-[#E3DAC9]">
-      <h1 className="text-4xl font-bold text-center text-gray-800 mb-12">Upcoming Events</h1>
-      {loading ? (
-        <p className="text-center">Loading events...</p>
-      ) : (
-        <div className="space-y-8 max-w-4xl mx-auto">
-          {events.length > 0 ? events.map(event => (
-            <div key={event._id} className="bg-white p-6 rounded-lg shadow-md flex flex-col md:flex-row items-start md:items-center gap-6">
-              <div className="text-center md:text-left md:w-1/4">
-                <p className="text-2xl font-bold text-blue-600">{new Date(event.date).toLocaleDateString('en-US', { day: '2-digit' })}</p>
-                <p className="text-lg text-gray-700">{new Date(event.date).toLocaleDateString('en-US', { month: 'short' })}</p>
-                <p className="text-sm text-gray-500">{new Date(event.date).getFullYear()}</p>
+    <div style={{ backgroundColor: boneColor }} className="min-h-screen py-20">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <SectionHeading>Upcoming Events</SectionHeading>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          {loading ? (
+            // If loading, display 6 skeleton placeholders
+            [...Array(6)].map((_, index) => <SkeletonCard key={index} />)
+          ) : events.length > 0 ? (
+            // If loading is complete and events exist, display them
+            events.map(event => (
+              <div key={event._id} className="bg-white rounded-xl shadow-xl overflow-hidden transform hover:-translate-y-3 transition-transform duration-300 border border-gray-100">
+                <img src={event.imageUrl || 'https://placehold.co/600x400/E2DAC9/4E2A0D?text=Event'} alt={event.title} className="w-full h-52 object-cover" />
+                <div className="p-6 text-left">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-3">{event.title}</h3>
+                  <p className="text-gray-500 text-sm mb-2 font-medium">
+                    <span className="font-semibold">Date:</span> {new Date(event.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                  </p>
+                  <p className="text-gray-500 text-sm mb-4 font-medium">
+                    <span className="font-semibold">Location:</span> {event.location || 'To be announced'}
+                  </p>
+                  <p className="text-gray-700 leading-relaxed">{event.description}</p>
+                </div>
               </div>
-              <div className="border-l-4 border-blue-500 pl-6 flex-1">
-                <h2 className="text-2xl font-semibold text-gray-800">{event.title}</h2>
-                <p className="text-gray-600 mt-2">{event.description}</p>
-                <p className="text-sm text-gray-500 mt-2">Location: {event.location}</p>
-              </div>
-            </div>
-          )) : (
-            <p className="text-center text-gray-600">No upcoming events at this time. Please check back later.</p>
+            ))
+          ) : (
+            // If loading is complete and there are no events, show a message
+            <p className="text-center text-gray-600 col-span-full text-lg">There are no upcoming events at this time. Please check back later.</p>
           )}
         </div>
-      )}
+      </div>
     </div>
   );
 }

@@ -1,6 +1,3 @@
-// =================================================================
-// FILE: backend/controllers/eventController.js (FIXED)
-// =================================================================
 const Event = require('../models/Event'); // Make sure to import the Event model
 
 /**
@@ -10,7 +7,6 @@ const Event = require('../models/Event'); // Make sure to import the Event model
  */
 exports.getAllEvents = async (req, res) => {
   try {
-    // Find all events in the database and sort them by date
     const events = await Event.find().sort({ date: 1 });
     res.status(200).json(events);
   } catch (error) {
@@ -26,22 +22,22 @@ exports.getAllEvents = async (req, res) => {
  */
 exports.createEvent = async (req, res) => {
   try {
-    const { title, description, date, location } = req.body;
+    // --- 1. DESTRUCTURE imageUrl FROM THE BODY ---
+    const { title, description, date, location, imageUrl } = req.body;
 
-    // Basic validation
     if (!title || !description || !date) {
       return res.status(400).json({ message: 'Please provide title, description, and date.' });
     }
 
-    // Create the event in the database
+    // --- 2. ADD imageUrl TO THE CREATED OBJECT ---
     const newEvent = await Event.create({
       title,
       description,
       date,
       location,
+      imageUrl, // Pass the imageUrl to the database
     });
     
-    // Send back the created event as confirmation
     res.status(201).json(newEvent);
   } catch (error) {
     console.error("Error creating event:", error);
@@ -57,8 +53,8 @@ exports.createEvent = async (req, res) => {
 exports.updateEvent = async (req, res) => {
   try {
     const event = await Event.findByIdAndUpdate(req.params.id, req.body, {
-      new: true, // Return the updated document
-      runValidators: true, // Run schema validators on update
+      new: true,
+      runValidators: true,
     });
 
     if (!event) {

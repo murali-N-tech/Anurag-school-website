@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-// The API instance is now configured to make requests to your local server
+// The API instance is configured to make requests to your local server
 const API = axios.create({
-  baseURL: 'http://localhost:5000/api',
+  baseURL: 'https://anurag-school-website.onrender.com/api',
 });
 
 // This interceptor attaches the user's auth token to every request if it exists
@@ -26,7 +26,7 @@ export const registerAdmin = (formData) => API.post('/auth/register', formData);
 // News endpoints
 export const fetchNews = () => API.get('/news');
 export const createNews = (newsData) => API.post('/news', newsData);
-// Note: You will need a function to fetch a single news article
+// --- THIS IS THE FIX: Add the function to fetch a single article by its ID ---
 export const fetchNewsById = (id) => API.get(`/news/${id}`);
 
 

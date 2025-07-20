@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { createEvent } from '../../services/api';
 
 function EventManager() {
-  const [formData, setFormData] = useState({ title: '', description: '', date: '', location: '' });
+  // 1. ADD imageUrl TO THE INITIAL STATE
+  const [formData, setFormData] = useState({ title: '', description: '', date: '', location: '', imageUrl: '' });
   const [message, setMessage] = useState('');
   const [isError, setIsError] = useState(false);
 
@@ -16,9 +17,10 @@ function EventManager() {
       await createEvent(formData);
       setMessage('Event created successfully!');
       setIsError(false);
-      setFormData({ title: '', description: '', date: '', location: '' });
+      // 2. RESET THE imageUrl FIELD ON SUCCESS
+      setFormData({ title: '', description: '', date: '', location: '', imageUrl: '' });
     } catch (error) {
-      setMessage('Failed to create event.');
+      setMessage('Failed to create event. Please check the console for details.');
       setIsError(true);
       console.error(error);
     }
@@ -43,6 +45,18 @@ function EventManager() {
         <div>
           <label htmlFor="location" className="block text-sm font-medium text-gray-700">Location</label>
           <input type="text" name="location" value={formData.location} onChange={handleChange} className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md" placeholder="e.g., School Auditorium" />
+        </div>
+        {/* --- 3. ADD THE NEW INPUT FIELD FOR THE IMAGE URL --- */}
+        <div>
+          <label htmlFor="imageUrl" className="block text-sm font-medium text-gray-700">Image URL</label>
+          <input 
+            type="text" 
+            name="imageUrl" 
+            value={formData.imageUrl} 
+            onChange={handleChange} 
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md" 
+            placeholder="https://example.com/image.png" 
+          />
         </div>
         <button type="submit" className="px-4 py-2 font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700">Create Event</button>
       </form>

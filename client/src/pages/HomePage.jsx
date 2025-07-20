@@ -2,16 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { fetchNews } from '../services/api';
 import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import SkeletonCard from '../components/common/SkeletonCard'; // 1. IMPORT THE SKELETON COMPONENT
 
 function HomePage() {
-  // State for news articles and the slideshow index
+  // State for news, slideshow, and the new loading status
   const [news, setNews] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [newsLoading, setNewsLoading] = useState(true); // 2. ADD LOADING STATE
 
   // --- Theme Colors ---
-  // Define consistent theme colors for a professional look
-  const boneColor = '#E3DAC9'; // A warm, off-white background
-  const darkBrown = '#4E2A0D'; // A rich brown for headings and accents
+  const boneColor = '#E3DAC9';
+  const darkBrown = '#4E2A0D';
 
   // --- Slideshow Banner Data ---
   const banners = [
@@ -56,30 +57,26 @@ function HomePage() {
 
   // --- Effects Hook ---
   useEffect(() => {
-    // Set up an interval for the auto-playing slideshow
-    const sliderInterval = setInterval(() => {
-      goToNext();
-    }, 5000); // Change slide every 5 seconds
+    const sliderInterval = setInterval(goToNext, 5000);
 
-    // Fetch the latest news articles from the API
+    // 3. UPDATE THE API CALL TO MANAGE LOADING STATE
     const getNews = async () => {
       try {
+        setNewsLoading(true); // Start loading
         const { data } = await fetchNews();
-        setNews(data.slice(0, 3)); // Display the 3 most recent articles
+        setNews(data.slice(0, 3));
       } catch (error) {
         console.error("Failed to fetch news:", error);
+      } finally {
+        setNewsLoading(false); // Stop loading, regardless of success or error
       }
     };
     getNews();
 
-    // Clean up the interval when the component unmounts to prevent memory leaks
     return () => clearInterval(sliderInterval);
-    // Note: Consider removing `currentIndex` from the dependency array 
-    // if you don't want to re-fetch news every time the slide changes.
-  }, [currentIndex]);
+  }, []); // Empty dependency array ensures this runs only once on mount
 
   // --- Reusable Section Heading Component ---
-  // This component ensures all section titles have a consistent, professional style
   const SectionHeading = ({ children }) => (
     <h2
       className="text-3xl sm:text-4xl font-extrabold mb-8 py-3 px-6 inline-block rounded-md shadow-lg"
@@ -90,7 +87,6 @@ function HomePage() {
   );
 
   return (
-    // Main container with the 'bone' background color
     <div style={{ backgroundColor: boneColor }} className="min-h-screen font-sans">
       
       {/* Hero Slideshow Section */}
@@ -160,23 +156,31 @@ function HomePage() {
         <div className="container mx-auto">
           <SectionHeading>Latest News</SectionHeading>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-12">
-            {news.length > 0 ? news.map(article => (
-              <div key={article._id} className="bg-white rounded-xl shadow-xl overflow-hidden transform hover:-translate-y-3 transition-transform duration-300 border border-gray-100">
-                <img src={article.imageUrl || 'https://placehold.co/600x400/E2DAC9/4E2A0D?text=No+Image'} alt={article.title} className="w-full h-52 object-cover" />
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3 line-clamp-2">{article.title}</h3>
-                  <p className="text-gray-500 text-sm mb-4 font-medium">{new Date(article.publishDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
-                  <p className="text-gray-700 line-clamp-4 leading-relaxed mb-4">{article.content}</p>
-                  <Link to={`/news/${article._id}`} className="text-blue-600 hover:text-blue-800 font-semibold transition-colors duration-200 inline-flex items-center">
-                    Read More
-                    <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                      <path d="M5 12h14M12 5l7 7-7 7"></path>
-                    </svg>
-                  </Link>
+            {/* 4. ADD CONDITIONAL LOGIC FOR SKELETONS */}
+            {newsLoading ? (
+              // If loading, show 3 skeleton cards
+              [...Array(3)].map((_, index) => <SkeletonCard key={index} />)
+            ) : news.length > 0 ? (
+              // If not loading and news exists, show news cards
+              news.map(article => (
+                <div key={article._id} className="bg-white rounded-xl shadow-xl overflow-hidden transform hover:-translate-y-3 transition-transform duration-300 border border-gray-100">
+                  <img src={article.imageUrl || 'https://placehold.co/600x400/E2DAC9/4E2A0D?text=No+Image'} alt={article.title} className="w-full h-52 object-cover" />
+                  <div className="p-6">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-3 line-clamp-2">{article.title}</h3>
+                    <p className="text-gray-500 text-sm mb-4 font-medium">{new Date(article.publishDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                    <p className="text-gray-700 line-clamp-4 leading-relaxed mb-4">{article.content}</p>
+                    <Link to={`/news/${article._id}`} className="text-blue-600 hover:text-blue-800 font-semibold transition-colors duration-200 inline-flex items-center">
+                      Read More
+                      <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                        <path d="M5 12h14M12 5l7 7-7 7"></path>
+                      </svg>
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            )) : (
-              <p className="text-center text-gray-600 col-span-full text-lg">Loading latest news, please wait...</p>
+              ))
+            ) : (
+              // If not loading and no news, show a "not found" message
+              <p className="text-center text-gray-600 col-span-full text-lg">No news articles could be found.</p>
             )}
           </div>
         </div>

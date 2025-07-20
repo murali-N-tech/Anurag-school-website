@@ -17,6 +17,11 @@ const EventSchema = new mongoose.Schema({
     type: String, 
     default: 'School Campus' 
   },
+  // --- ADD THIS FIELD ---
+  imageUrl: {
+    type: String, // Stores the URL for the event image
+    default: '',  // A default empty string is good practice
+  },
 });
 
 module.exports = mongoose.model('Event', EventSchema);
