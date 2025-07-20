@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // The API instance is now configured to make requests to your local server
 const API = axios.create({
-  baseURL: 'http://localhost:5000/api',
+  baseURL: 'https://anurag-school-website.onrender.com/api',
 });
 
 // This interceptor attaches the user's auth token to every request if it exists
