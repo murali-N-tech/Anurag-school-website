@@ -61,7 +61,7 @@ function ContactPage() {
             <h2 className="text-2xl font-semibold mb-4">Contact Information</h2>
             <p className="text-gray-600 mb-2"><strong>Address:</strong>D.No.11-283, Anurag Nagar, Ponangi Road, Dt, Eluru, Andhra Pradesh </p>
             <p className="text-gray-600 mb-2"><strong>Phone:</strong> +91 9491480402</p>
-            <p className="text-gray-600"><strong>Email:</strong> mernschool@gmail.coml</p>
+            <p className="text-gray-600"><strong>Email:</strong> mernschool@gmail.com</p>
           </div>
           <div className="bg-white rounded-lg shadow-lg overflow-hidden">
             <iframe

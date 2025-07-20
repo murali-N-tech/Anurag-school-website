@@ -150,6 +150,54 @@ function HomePage() {
           </ul>
         </div>
       </section>
+      <div className="flex flex-wrap md:-m-2 -m-1">
+            <div className="flex flex-wrap w-1/2">
+              <div className="md:p-2 p-1 w-1/2">
+                <img alt="gallery" className="w-full object-cover h-full object-center block" src="https://res.cloudinary.com/dqdhui9bw/image/upload/v1752924922/IMG_20250228_100328_opclbp.jpeg"/>
+              </div>
+              <div className="md:p-2 p-1 w-1/2">
+                <img alt="gallery" className="w-full object-cover h-full object-center block" src="https://res.cloudinary.com/dqdhui9bw/image/upload/v1752924914/IMG_20250228_105446_ehu9nv.jpeg"/>
+              </div>
+              <div className="md:p-2 p-1 w-full">
+                <img alt="gallery" className="w-full h-full object-cover object-center block" src="https://res.cloudinary.com/dqdhui9bw/image/upload/v1752924915/IMG_20250621_065849_vnq5bv.jpeg"/>
+              </div>
+            </div>
+            <div className="flex flex-wrap w-1/2">
+              <div className="md:p-2 p-1 w-full">
+                <img alt="gallery" className="w-full h-full object-cover object-center block" src="https://res.cloudinary.com/dqdhui9bw/image/upload/v1752924912/IMG_20250109_135254_re92jh.jpeg"/>
+              </div>
+              <div className="md:p-2 p-1 w-1/2">
+                <img alt="gallery" className="w-full object-cover h-full object-center block" src="https://res.cloudinary.com/dqdhui9bw/image/upload/v1752924912/IMG_20250126_091207_psere5.jpeg"/>
+              </div>
+              <div className="md:p-2 p-1 w-1/2">
+                <img alt="gallery" className="w-full object-cover h-full object-center block" src="https://res.cloudinary.com/dqdhui9bw/image/upload/v1752924915/IMG_20250621_070849_cii4ov.jpeg"/>
+              </div>
+            </div>
+          </div>{/* 2nd section gallery */}
+            <div className="flex flex-wrap md:-m-2 -m-1">
+            <div className="flex flex-wrap w-1/2">
+              <div className="md:p-2 p-1 w-1/2">
+                <img alt="gallery" className="w-full object-cover h-full object-center block" src="https://res.cloudinary.com/dqdhui9bw/image/upload/v1752995931/IMG_1884_kdv9x8.jpeg"/>
+              </div>
+              <div className="md:p-2 p-1 w-1/2">
+                <img alt="gallery" className="w-full object-cover h-full object-center block" src="https://res.cloudinary.com/dqdhui9bw/image/upload/v1752995933/IMG_1879_lmhdoy.jpeg"/>
+              </div>
+              <div className="md:p-2 p-1 w-full">
+                <img alt="gallery" className="w-full h-full object-cover object-center block" src="https://res.cloudinary.com/dqdhui9bw/image/upload/v1752995933/IMG_0276_aly4mk.jpeg"/>
+              </div>
+            </div>
+            <div className="flex flex-wrap w-1/2">
+              <div className="md:p-2 p-1 w-full">
+                <img alt="gallery" className="w-full h-full object-cover object-center block" src="https://res.cloudinary.com/dqdhui9bw/image/upload/v1752995929/IMG_20200130_150901_hqdxfp.jpeg"/>
+              </div>
+              <div className="md:p-2 p-1 w-1/2">
+                <img alt="gallery" className="w-full object-cover h-full object-center block" src="https://res.cloudinary.com/dqdhui9bw/image/upload/v1752995931/IMG_6239_adkdcc.jpeg"/>
+              </div>
+              <div className="md:p-2 p-1 w-1/2">
+                <img alt="gallery" className="w-full object-cover h-full object-center block" src="https://res.cloudinary.com/dqdhui9bw/image/upload/v1752995931/IMG_0076_vyajab.jpeg"/>
+              </div>
+            </div>
+            </div>
 
       {/* Latest News Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 text-center" style={{ backgroundColor: boneColor }}>
@@ -189,7 +237,7 @@ function HomePage() {
       {/* Our Members Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 text-center" style={{ backgroundColor: boneColor }}>
         <div className="container mx-auto">
-          <SectionHeading>Our Members</SectionHeading>
+          <SectionHeading> BOARD MEMBERS</SectionHeading>
           <p className="lg:w-2/3 mx-auto leading-relaxed text-lg text-gray-800 mt-6 mb-12">
             Meet the dedicated team behind Anurag EM School, committed to nurturing young minds and fostering a vibrant learning community.
           </p>
@@ -197,44 +245,57 @@ function HomePage() {
             {/* Member 1 */}
             <div className="p-4 w-full sm:w-1/2 lg:w-1/4">
               <div className="h-full flex flex-col items-center text-center bg-white rounded-xl shadow-md p-6 transform hover:-translate-y-2 transition-transform duration-300">
-                <img alt="Chairman Peter G" className="flex-shrink-0 rounded-full w-48 h-48 object-cover object-center mb-6 border-4 border-gray-200 shadow-sm" src="https://res.cloudinary.com/dqdhui9bw/image/upload/v1752948517/66c066c9-fd42-49ee-93a3-1f9ebed02d76_kvfdop.jpg"/>
+                <img alt="team" className="flex-shrink-0 rounded-full w-48 h-48 object-cover object-center mb-6 border-4 border-gray-200 shadow-sm" src="https://res.cloudinary.com/dqdhui9bw/image/upload/v1752948517/66c066c9-fd42-49ee-93a3-1f9ebed02d76_kvfdop.jpg"/>
                 <div className="w-full">
                   <h3 className="text-xl font-bold text-gray-900 mb-1">Peter G</h3>
                   <p className="text-gray-600 mb-3 font-medium">CHAIRMAN</p>
-                  <p className="mb-4 text-gray-700 text-sm leading-relaxed">Unwavering dedication fosters a thriving learning environment, consistently prioritizing student success and community growth.</p>
+                  <p className="mb-4 text-gray-700 text-sm leading-relaxed"> Unwavering dedication fosters a thriving learning environment, consistently prioritizing student success and community growth. </p>
+                  <span className="inline-flex space-x-3">
+                  
+                    
+                  </span>
                 </div>
               </div>
             </div>
             {/* Member 2 */}
             <div className="p-4 w-full sm:w-1/2 lg:w-1/4">
               <div className="h-full flex flex-col items-center text-center bg-white rounded-xl shadow-md p-6 transform hover:-translate-y-2 transition-transform duration-300">
-                <img alt="Principal Kumari G" className="flex-shrink-0 rounded-full w-48 h-48 object-cover object-center mb-6 border-4 border-gray-200 shadow-sm" src="https://res.cloudinary.com/dqdhui9bw/image/upload/v1752948518/IMG_20200120_203220_ew0qmw.jpg"/>
+                <img alt="team" className="flex-shrink-0 rounded-full w-48 h-48 object-cover object-center mb-6 border-4 border-gray-200 shadow-sm" src="https://res.cloudinary.com/dqdhui9bw/image/upload/v1752999058/_DSC0355_Original_iet2am.jpg"/>
                 <div className="w-full">
                   <h3 className="text-xl font-bold text-gray-900 mb-1">Kumari G</h3>
                   <p className="text-gray-600 mb-3 font-medium">PRINCIPAL</p>
                   <p className="mb-4 text-gray-700 text-sm leading-relaxed">Ensuring a well-structured and effective learning experience for all students by overseeing curriculum development and academic programs.</p>
+                  <span className="inline-flex space-x-3">
+                    
+                  </span>
                 </div>
               </div>
             </div>
             {/* Member 3 */}
             <div className="p-4 w-full sm:w-1/2 lg:w-1/4">
               <div className="h-full flex flex-col items-center text-center bg-white rounded-xl shadow-md p-6 transform hover:-translate-y-2 transition-transform duration-300">
-                <img alt="Treasurer Dominic G" className="flex-shrink-0 rounded-full w-48 h-48 object-cover object-center mb-6 border-4 border-gray-200 shadow-sm" src="https://dummyimage.com/202x202/E3DAC9/4E2A0D"/>
+                <img alt="team" className="flex-shrink-0 rounded-full w-48 h-48 object-cover object-center mb-6 border-4 border-gray-200 shadow-sm" src="https://res.cloudinary.com/dqdhui9bw/image/upload/v1752999348/9471553b-e2e8-40ec-ba16-2a0d16e127a9_m59o1t.jpg"/>
                 <div className="w-full">
                   <h3 className="text-xl font-bold text-gray-900 mb-1">DOMINIC G</h3>
                   <p className="text-gray-600 mb-3 font-medium">TREASURER</p>
                   <p className="mb-4 text-gray-700 text-sm leading-relaxed">Providing guidance and support to help students thrive emotionally and socially, fostering a positive and inclusive school environment.</p>
+                  <span className="inline-flex space-x-3">
+                    
+                  </span>
                 </div>
               </div>
             </div>
             {/* Member 4 */}
             <div className="p-4 w-full sm:w-1/2 lg:w-1/4">
               <div className="h-full flex flex-col items-center text-center bg-white rounded-xl shadow-md p-6 transform hover:-translate-y-2 transition-transform duration-300">
-                <img alt="Treasurer Joseph G" className="flex-shrink-0 rounded-full w-48 h-48 object-cover object-center mb-6 border-4 border-gray-200 shadow-sm" src="https://dummyimage.com/203x203/E3DAC9/4E2A0D"/>
+                <img alt="team" className="flex-shrink-0 rounded-full w-48 h-48 object-cover object-center mb-6 border-4 border-gray-200 shadow-sm" src="https://res.cloudinary.com/dqdhui9bw/image/upload/v1752999056/1f391b37-9b2a-4f68-adfa-42ef924c77d5_oreomh.jpg"/>
                 <div className="w-full">
                   <h3 className="text-xl font-bold text-gray-900 mb-1">JOSEPH G</h3>
                   <p className="text-gray-600 mb-3 font-medium">TREASURER</p>
-                  <p className="mb-4 text-gray-700 text-sm leading-relaxed">Promoting physical fitness and teamwork through various sports activities, instilling discipline and a healthy lifestyle.</p>
+                  <p className="mb-4 text-gray-700 text-sm leading-relaxed">Providing guidance and support to help students thrive emotionally and socially, fostering a positive and inclusive school environment.</p>
+                  <span className="inline-flex space-x-3">
+                   
+                  </span>
                 </div>
               </div>
             </div>
