@@ -97,7 +97,7 @@ function Footer() {
             <a className="text-sm block" href="mailto:mernschool@gmail.com" style={{ color: boneColor }}
                onMouseOver={(e) => e.currentTarget.style.color = linkHoverActiveColor}
                onMouseOut={(e) => e.currentTarget.style.color = boneColor}>
-              mernschool@gmail.com
+              anuragenglishmediumschool@gmail.com
             </a>
             <a className="text-sm mt-1 block" href="tel:+91-9491480402" style={{ color: boneColor }}
                onMouseOver={(e) => e.currentTarget.style.color = linkHoverActiveColor}
