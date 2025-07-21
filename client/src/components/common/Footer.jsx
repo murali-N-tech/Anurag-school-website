@@ -109,7 +109,7 @@ function Footer() {
 
         {/* Copyright Section */}
         <div className="text-center border-t mt-8 pt-6 text-sm" style={{ color: boneColor, borderColor: boneColor }}> {/* Bone color for copyright text and border */}
-          <p>&copy; {new Date().getFullYear()} Anurag EM School. All Rights Reserved.</p>
+          <p>&copy; {new Date().getFullYear()} StackZy Tech 2025. All Rights Reserved.</p>
         </div>
       </div>
     </footer>
