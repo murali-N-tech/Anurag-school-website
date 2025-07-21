@@ -259,7 +259,7 @@ function HomePage() {
               <div className="h-full flex flex-col items-center text-center bg-white rounded-xl shadow-md p-6 transform hover:-translate-y-2 transition-transform duration-300">
                 <img alt="team" className="flex-shrink-0 rounded-full w-48 h-48 object-cover object-center mb-6 border-4 border-gray-200 shadow-sm" src="https://res.cloudinary.com/dqdhui9bw/image/upload/v1752948517/66c066c9-fd42-49ee-93a3-1f9ebed02d76_kvfdop.jpg"/>
                 <div className="w-full">
-                  <h3 className="text-xl font-bold text-gray-900 mb-1">Peter G</h3>
+                  <h3 className="text-xl font-bold text-gray-900 mb-1">Mr Peter </h3>
                   <p className="text-gray-600 mb-3 font-medium">CHAIRMAN</p>
                   <p className="mb-4 text-gray-700 text-sm leading-relaxed">Unwavering dedication fosters a thriving learning environment, consistently prioritizing student success and community growth.</p>
                 </div>
@@ -269,7 +269,7 @@ function HomePage() {
               <div className="h-full flex flex-col items-center text-center bg-white rounded-xl shadow-md p-6 transform hover:-translate-y-2 transition-transform duration-300">
                 <img alt="team" className="flex-shrink-0 rounded-full w-48 h-48 object-cover object-center mb-6 border-4 border-gray-200 shadow-sm" src="https://res.cloudinary.com/dqdhui9bw/image/upload/v1752999058/_DSC0355_Original_iet2am.jpg"/>
                 <div className="w-full">
-                  <h3 className="text-xl font-bold text-gray-900 mb-1">Kumari G</h3>
+                  <h3 className="text-xl font-bold text-gray-900 mb-1">Mrs Kumari</h3>
                   <p className="text-gray-600 mb-3 font-medium">PRINCIPAL</p>
                   <p className="mb-4 text-gray-700 text-sm leading-relaxed">Ensuring a well-structured and effective learning experience for all students by overseeing curriculum development and academic programs.</p>
                 </div>
@@ -279,7 +279,7 @@ function HomePage() {
               <div className="h-full flex flex-col items-center text-center bg-white rounded-xl shadow-md p-6 transform hover:-translate-y-2 transition-transform duration-300">
                 <img alt="team" className="flex-shrink-0 rounded-full w-48 h-48 object-cover object-center mb-6 border-4 border-gray-200 shadow-sm" src="https://res.cloudinary.com/dqdhui9bw/image/upload/v1752999348/9471553b-e2e8-40ec-ba16-2a0d16e127a9_m59o1t.jpg"/>
                 <div className="w-full">
-                  <h3 className="text-xl font-bold text-gray-900 mb-1">DOMINIC G</h3>
+                  <h3 className="text-xl font-bold text-gray-900 mb-1">Mr DOMINIC</h3>
                   <p className="text-gray-600 mb-3 font-medium">TREASURER</p>
                   <p className="mb-4 text-gray-700 text-sm leading-relaxed">Providing guidance and support to help students thrive emotionally and socially, fostering a positive and inclusive school environment.</p>
                 </div>
@@ -289,7 +289,7 @@ function HomePage() {
               <div className="h-full flex flex-col items-center text-center bg-white rounded-xl shadow-md p-6 transform hover:-translate-y-2 transition-transform duration-300">
                 <img alt="team" className="flex-shrink-0 rounded-full w-48 h-48 object-cover object-center mb-6 border-4 border-gray-200 shadow-sm" src="https://res.cloudinary.com/dqdhui9bw/image/upload/v1752999056/1f391b37-9b2a-4f68-adfa-42ef924c77d5_oreomh.jpg"/>
                 <div className="w-full">
-                  <h3 className="text-xl font-bold text-gray-900 mb-1">JOSEPH G</h3>
+                  <h3 className="text-xl font-bold text-gray-900 mb-1">Mr JOSEPH</h3>
                   <p className="text-gray-600 mb-3 font-medium">TREASURER</p>
                   <p className="mb-4 text-gray-700 text-sm leading-relaxed">Providing guidance and support to help students thrive emotionally and socially, fostering a positive and inclusive school environment.</p>
                 </div>
