@@ -94,7 +94,7 @@ function Footer() {
           <div>
             <h3 className="text-3xl font-semibold mb-4" style={{ color: lightAmberHeading }}>Connect With Us</h3> {/* Lighter amber heading */}
             {/* Using a regular anchor tag for mailto/tel for direct action */}
-            <a className="text-sm block" href="mailto:mernschool@gmail.com" style={{ color: boneColor }}
+            <a className="text-sm block" href="mailto:anuragenglishmediumschool@gmail.com" style={{ color: boneColor }}
                onMouseOver={(e) => e.currentTarget.style.color = linkHoverActiveColor}
                onMouseOut={(e) => e.currentTarget.style.color = boneColor}>
               anuragenglishmediumschool@gmail.com
