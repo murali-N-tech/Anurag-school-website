@@ -10,7 +10,7 @@ function Gallery() {
   useEffect(() => {
     const fetchGallery = async () => {
       try {
-        const { data } = await axios.get('http://localhost:5001/api/gallery');
+        const { data } = await axios.get('https://anurag-school-website.onrender.com/api/gallery');
         setImages(data);
       } catch (err) {
         console.error("Fetch failed", err);
