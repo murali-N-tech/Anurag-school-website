@@ -43,7 +43,7 @@ function Gallery() {
       <div className="max-w-7xl mx-auto mb-8 md:mb-12 flex flex-col md:flex-row justify-between items-start md:items-end border-b border-blue-500/20 pb-4 md:pb-6 gap-4">
         <div>
           <h1 className="text-2xl md:text-5xl font-black text-white uppercase tracking-tighter">
-            ANU RAG <span className="text-blue-500 italic">MOMENTS</span>
+            ANU RAG EM SCHOOL <span className="text-blue-500 italic">MOMENTS</span>
           </h1>
           <p className="text-blue-400/60 text-[10px] font-bold uppercase tracking-[0.4em] mt-2">
             Capturing Excellence in Motion

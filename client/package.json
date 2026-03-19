@@ -11,7 +11,7 @@
             "tailwind-init": "tailwindcss.cmd init -p"
       },
       "dependencies": {
-            "@react-three/drei": "^10.7.7",
+            "@react-three/drei": "^9.122.0",
             "@react-three/fiber": "^8.17.10",
             "axios": "^1.13.6",
             "framer-motion": "^12.38.0",

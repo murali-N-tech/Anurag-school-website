@@ -23,12 +23,12 @@ function ContactPage() {
   };
 
   const inputStyle =
-    "w-full bg-white border border-blue-200 rounded-2xl px-4 py-3 md:py-4 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all text-sm md:text-base";
+    "w-full bg-white/50 border border-blue-100 rounded-2xl px-4 py-3 md:py-4 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all backdrop-blur-sm";
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100 pt-20 md:pt-28 pb-10 md:pb-12 px-4 relative overflow-hidden">
 
-      {/* LIGHT GLOW BLOBS */}
+      {/* LIGHT GLOW BLOBS - Performance-friendly replacement for 3D elements */}
       <div className="absolute top-[-5%] right-[-5%] w-[300px] md:w-[400px] h-[300px] md:h-[400px] bg-blue-300 opacity-20 rounded-full blur-[80px] md:blur-[120px]"></div>
       <div className="absolute bottom-[-5%] left-[-5%] w-[300px] md:w-[400px] h-[300px] md:h-[400px] bg-cyan-200 opacity-20 rounded-full blur-[80px] md:blur-[120px]"></div>
 
@@ -66,7 +66,7 @@ function ContactPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10">
 
           {/* FORM */}
-          <div className="bg-white/70 backdrop-blur-xl border border-blue-200 p-6 md:p-12 rounded-[2rem] md:rounded-3xl shadow-xl">
+          <div className="bg-white/70 backdrop-blur-xl border border-white/60 p-6 md:p-12 rounded-[2rem] md:rounded-3xl shadow-xl">
             <h2 className="text-xl md:text-2xl font-bold text-slate-900 mb-6 md:mb-8 flex items-center gap-2">
               <Send size={20} className="text-blue-600" />
               Send Us a Message
@@ -97,9 +97,9 @@ function ContactPage() {
             )}
           </div>
 
-          {/* CONTACT INFO & MAP */}
+          {/* CONTACT INFO */}
           <div className="flex flex-col gap-6 md:gap-8">
-            <div className="bg-white/70 backdrop-blur-xl border border-blue-200 p-6 md:p-8 rounded-[2rem] md:rounded-3xl shadow-lg">
+            <div className="bg-white/70 backdrop-blur-xl border border-white/60 p-6 md:p-8 rounded-[2rem] md:rounded-3xl shadow-lg">
               <div className="grid gap-4 md:gap-6">
                 {[
                   { icon: <MapPin size={18} />, label: "Location", value: "Eluru, Andhra Pradesh" },
@@ -117,17 +117,22 @@ function ContactPage() {
               </div>
             </div>
 
-            {/* MAP SECTION */}
-            <div className="h-[250px] md:h-[300px] rounded-[2rem] md:rounded-3xl overflow-hidden border border-blue-200 shadow-lg">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15278.473557999713!2d81.0850!3d16.7110!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTbCsDQyJzM5LjYiTiA4McKwMDUnMDYuMCJF!5e0!3m2!1sen!2sin!4v1634567890123!5m2!1sen!2sin"
-                className="w-full h-full grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-700"
+            {/* MAP - Iframe preserved as requested */}
+            <div className="flex-grow min-h-[300px] md:min-h-[350px] rounded-[2rem] md:rounded-3xl overflow-hidden border border-blue-200 shadow-lg relative group">
+                <iframe
+                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3821.852952224336!2d81.10846099999999!3d16.6842403!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a361584341fe779%3A0x9f74fc517b25552c!2sAnurag%20Group!5e0!3m2!1sen!2sin!4v1752949636221!5m2!1sen!2sin"
+                className="w-full h-full grayscale opacity-70 contrast-125 hover:grayscale-0 hover:opacity-100 transition-all duration-700"
                 style={{ border: 0 }}
                 allowFullScreen=""
                 loading="lazy"
                 title="School Location"
               ></iframe>
+              {/* Glass overlay hint for mobile/desktop */}
+              <div className="absolute top-4 left-4 pointer-events-none bg-blue-600/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
+                Click to interact with map
+              </div>
             </div>
+
           </div>
         </div>
       </div>
