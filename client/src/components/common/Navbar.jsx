@@ -28,7 +28,7 @@ const Navbar = () => {
           <div className="flex-shrink-0">
             <a href="#home">
               <img 
-                src="/anusch.png" 
+                src="https://res.cloudinary.com/ddgfjerss/image/upload/v1773918117/anusch_rqxcwc.png" 
                 alt="Logo" 
                 className="h-24 md:h-32s w-auto object-contain transition-transform hover:scale-105"
               />
